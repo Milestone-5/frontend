@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center sticky top-0 z-50 py-4 px-12 shadow-md bg-[#fff]">
       {/* Logo */}
-      <div className="flex items-center text-[#FFAA33] text-lg">
+      <div className="flex items-center text-[#FFAA33] text-xl">
         Study<span className="font-bold">Mate</span>
       </div>
 

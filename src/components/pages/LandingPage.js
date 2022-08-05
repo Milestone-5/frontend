@@ -13,7 +13,7 @@ const LandingPage = () => {
           <h1 className="text-6xl mb-8 text-[#F58F00]">
             Study<span className="font-bold">Mate</span>
           </h1>
-          <button className="rounded-full px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] text-xl">
+          <button className="rounded-full px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] text-xl transition duration-200">
             <Link to="/discussion">Let's Study!</Link>
           </button>
         </div>

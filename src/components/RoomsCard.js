@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 const RoomsCard = ({ room }) => {
   return (
     <>
-      <div className="mt-5 p-4 rounded-xl bg-white text-[#F58F00] divide-y ">
+      <div className="mt-5 p-4 rounded-xl bg-white text-[#F58F00] divide-y shadow-md">
         <div className="pb-2">
           {/* Room header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <h1 className="text-xl">{room.name}</h1>
-              <div className="rounded-full bg-[#FFCC85] text-sm text-[#fff] px-2 py-1">
-                {room.topic}
-              </div>
             </div>
-            <p className="text-[14px]">1 minutes ago</p>
+            <div className="rounded-full bg-[#FFCC85] text-sm text-[#000] px-2 py-1">
+              {room.topic}
+            </div>
           </div>
 
           {/* Room description */}
@@ -26,11 +25,11 @@ const RoomsCard = ({ room }) => {
 
         <div className="flex justify-between pt-2">
           <div className="flex items-center gap-2">
-            <BsFillPeopleFill /> 0 joined
+            <BsFillPeopleFill /> {room.participants} joined
           </div>
 
           <Link to={"/room/" + room.id}>
-            <button className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] transition duration-200">
+            <button className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] transition duration-200 shadow-md">
               View Room
             </button>
           </Link>

@@ -4,7 +4,7 @@ import homeimg from "../../assets/home.png";
 
 const LandingPage = () => {
   return (
-    <div className="h-screen">
+    <div className="h-screen -translate-y-[8]">
       <div className="flex justify-center items-center z-20 h-screen">
         <div className="">
           <img src={homeimg} alt="wave" className="w-96" />

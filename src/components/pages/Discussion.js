@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 import { GrClose } from "react-icons/gr";
 
 const Discussion = () => {
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -24,7 +24,7 @@ const Discussion = () => {
             className="fixed w-full h-full p-0 bg-black/[0.6]"
             onClick={toggleModal}
           ></div>
-          <div className="fixed top-1/2 left-1/2 z-50 bg-[#F58F00] rounded-xl w-1/2 -translate-y-1/2 -translate-x-1/2">
+          <div className="fixed top-1/2 left-1/2 z-50 bg-[#fff] rounded-xl w-1/2 -translate-y-1/2 -translate-x-1/2">
             <div className="bg-[#FFCC85] p-5 rounded-t-xl text-xl">
               <h1 className="flex items-center justify-between font-bold">
                 Create Room{" "}

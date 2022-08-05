@@ -10,7 +10,7 @@ const rooms = [
     topic: "SPARTA",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quis beatae illum aut provident similique soluta ducimus suscipit fugit nulla ipsa esse deserunt voluptas, assumenda veritatis, ea vel, architecto expedita.",
-    participants: 1,
+    participants: 2,
   },
   {
     id: 2,

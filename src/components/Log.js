@@ -10,7 +10,10 @@ const Log = ({ log }) => {
           <CgProfile size={30} color={"#44288F"} />
         </div>
         <div className="">
-          <Link to="/profile" className="text-[12px] text-[#5E39C4]">
+          <Link
+            to={"/profile/" + log.username}
+            className="text-[12px] font-bold text-[#5E39C4]"
+          >
             @{log.username}
           </Link>
           <p className="text-[12px] text-[#000]">at {log.time}</p>
@@ -18,11 +21,11 @@ const Log = ({ log }) => {
       </div>
       <p className="text-sm my-1">
         in{" "}
-        <Link className="text-[#5E39C4]" to="/">
+        <Link className="text-[#5E39C4] font-bold" to="/">
           {log.room}
         </Link>
       </p>
-      <div className="bg-[#F58F00] text-[#fff] px-2 py-1 rounded-sm text-sm mb-1">
+      <div className="bg-[#FFCC85] px-2 py-1 rounded-sm text-sm mb-1">
         {log.message}
       </div>
     </div>

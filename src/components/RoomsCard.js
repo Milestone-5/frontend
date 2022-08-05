@@ -10,9 +10,9 @@ const RoomsCard = ({ room }) => {
           {/* Room header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl">{room.name}</h1>
+              <h1 className="text-xl font-bold">{room.name}</h1>
             </div>
-            <div className="rounded-full bg-[#FFCC85] text-sm text-[#000] px-2 py-1">
+            <div className="rounded-full bg-[#FFCC85] text-sm text-[#000] px-2 py-1 font-bold">
               {room.topic}
             </div>
           </div>
@@ -25,7 +25,7 @@ const RoomsCard = ({ room }) => {
 
         <div className="flex justify-between pt-2">
           <div className="flex items-center gap-2">
-            <BsFillPeopleFill /> {room.participants} joined
+            <BsFillPeopleFill /> {room.participants.length} joined
           </div>
 
           <Link to={"/room/" + room.id}>

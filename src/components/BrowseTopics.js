@@ -1,23 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const topics = [
-  {
-    id: 1,
-    name: "SPARTA",
-    total: 2,
-  },
-  {
-    id: 2,
-    name: "Sistem dan Arsitektur Komputer",
-    total: 1,
-  },
-];
+import { topics } from "../db";
 
 const BrowseTopics = () => {
   return (
     <div className="flex-grow divide-y-2">
-      <div className="flex mb-2">
+      <div className="flex mb-2 font-bold">
         <h1>BROWSE TOPICS</h1>
       </div>
       <div className="space-y-2">

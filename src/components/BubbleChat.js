@@ -11,7 +11,7 @@ const BubbleChat = ({ bubble }) => {
             <CgProfile size={30} color={"#44288F"} />
             <p className="bg-[#fff] text-[#44288F]">@{bubble.username}</p>
           </div>
-          <p className="bg-[#fff] text-[#FFCC85]">14.00 PM</p>
+          <p className="bg-[#fff] text-[#FFCC85]">{bubble.time}</p>
         </div>
         <p>{bubble.message}</p>
       </div>

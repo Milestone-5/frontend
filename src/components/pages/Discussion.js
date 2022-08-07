@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import BrowseTopics from "../BrowseTopics";
 import ActivityLog from "../ActivityLog";
 import StudyRooms from "../StudyRooms";
-import { TextField } from "@mui/material";
 import { GrClose } from "react-icons/gr";
+import CreateRoom from "../CreateRoom";
 
 const Discussion = () => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
-  };
-
-  const handleSubmit = () => {
-    console.log("submitted!");
   };
 
   return (
@@ -33,18 +29,7 @@ const Discussion = () => {
                 </button>
               </h1>
             </div>
-            <div className="p-5">
-              <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
-                <TextField label="Room Topic" required />
-                <TextField label="Room Name" required />
-                <TextField label="Room Description" multiline rows={4} />
-                <input
-                  type="submit"
-                  value="Create Room"
-                  className="rounded-lg px-4 py-2 text-[#fff] bg-[#5E39C4] hover:bg-[#9881DA] transition duration-200 shadow-md cursor-pointer"
-                />
-              </form>
-            </div>
+            <CreateRoom />
           </div>
         </div>
       )}

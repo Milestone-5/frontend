@@ -6,8 +6,6 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 // import Profile from "./components/pages/Profile";
 import Room from "./components/pages/Room";
-import Login from "./components/pages/Login";
-import Register from "./components/pages/Register";
 
 const RoutesConfig = () => {
   return (

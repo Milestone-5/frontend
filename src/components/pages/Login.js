@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { users } from "../../db";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,14 +10,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const found = users.some((e) => e.username === username && e.password);
-
-    if (found) {
-      window.localStorage.setItem("isAuth", true);
-      // window.localStorage.setItem("username", username);
-      navigate("/");
-      window.location.reload(false);
-    }
+    axios
+      .get(
+        `http://localhost:4000/api/login/?username=${username}&password=${password}`
+      )
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

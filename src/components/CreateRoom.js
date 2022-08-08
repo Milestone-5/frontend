@@ -1,17 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const CreateRoom = () => {
+function CreateRoom() {
+  const [topic, setTopic] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log("submitted!");
+    if (localStorage.getItem("user")) {
+      axios
+        .post("http://localhost:4000/api/create-topic", {
+          subject: topic,
+          name: name,
+          description: description,
+          user: JSON.parse(localStorage.getItem("user")).username,
+        })
+        .then((res) => console.log(res.data))
+        .then((err) => console.log(err));
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
     <div className="p-5">
       <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
-        <TextField label="Room Topic" required />
-        <TextField label="Room Name" required />
-        <TextField label="Room Description" multiline rows={4} />
+        <TextField
+          label="Room Topic"
+          required
+          onChange={(e) => setTopic(e.target.value)}
+        />
+        <TextField
+          label="Room Name"
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          label="Room Description"
+          multiline
+          rows={4}
+          onChange={(e) => setDescription(e.target.value)}
+        />
         <input
           type="submit"
           value="Create Room"
@@ -20,6 +52,6 @@ const CreateRoom = () => {
       </form>
     </div>
   );
-};
+}
 
 export default CreateRoom;

@@ -5,19 +5,8 @@ import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 
-const Navbar = () => {
+const Navbar = ({ user, logout }) => {
   const [menu, setMenu] = useState(false);
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  const logout = () => {
-    setUser(null);
-    navigate("/");
-  };
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-  }, []);
 
   return (
     <div className="flex h-[80px] items-center sticky top-0 z-50 py-4 px-12 shadow-xl bg-[#fff]">
@@ -46,8 +35,8 @@ const Navbar = () => {
         ) : (
           <Link to="/login">Login</Link>
         )}
-        {/* Menu */}
 
+        {/* Menu */}
         {menu && user && (
           <div className="absolute rounded-lg -bottom-[60px] w-[160px] bg-[#44288F] text-sm transition duration-200 shadow-md">
             <div className="flex flex-col text-[#fff] divide-y-[1px]">

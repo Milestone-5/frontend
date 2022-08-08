@@ -12,6 +12,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .post("http://localhost:4000/api/register", {
         name,
@@ -21,6 +22,7 @@ const Register = () => {
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/");
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };

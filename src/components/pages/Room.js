@@ -79,7 +79,11 @@ const Room = () => {
       <div className="flex items-center text-[#fff] mb-2">
         <p>
           HOST:{" "}
-          <span className="text-[#44288F]">@{room.users && room.users[0]}</span>
+          {room.users && (
+            <Link to={"/profile/" + room.users[0]} className="text-[#44288F]">
+              @{room.users[0]}
+            </Link>
+          )}
         </p>
       </div>
 

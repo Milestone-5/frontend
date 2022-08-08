@@ -13,7 +13,7 @@ const RoomsCard = ({ room }) => {
               <h1 className="text-xl font-bold">{room.name}</h1>
             </div>
             <div className="rounded-full bg-[#FFCC85] text-sm text-[#000] px-2 py-1 font-bold">
-              {room.topic}
+              {room.subject}
             </div>
           </div>
 
@@ -25,10 +25,10 @@ const RoomsCard = ({ room }) => {
 
         <div className="flex justify-between pt-2">
           <div className="flex items-center gap-2">
-            <BsFillPeopleFill /> {room.participants.length} joined
+            <BsFillPeopleFill /> {room.users.length} joined
           </div>
 
-          <Link to={"/room/" + room.id}>
+          <Link to={"/room"} state={room}>
             <button className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] transition duration-200 shadow-md">
               View Room
             </button>

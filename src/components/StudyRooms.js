@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import RoomsCard from "./RoomsCard";
-import { rooms } from "../db";
+import axios from "axios";
 
 const StudyRooms = ({ onClick }) => {
+  const [rooms, setRooms] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/get-topics")
+    .then(res => setRooms(res.data))
+    .catch(err => console.log(err))
+  }, [])
+
   return (
     <>
       <div className="divide-y-2">

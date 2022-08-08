@@ -9,11 +9,11 @@ const BubbleChat = ({ bubble }) => {
         <div className="flex gap-12 items-center w-full justify-between">
           <div className="flex gap-2 items-center">
             <CgProfile size={30} color={"#44288F"} />
-            <p className="bg-[#fff] text-[#44288F]">@{bubble.username}</p>
+            <p className="bg-[#fff] text-[#44288F]">@{bubble.sender}</p>
           </div>
-          <p className="bg-[#fff] text-[#FFCC85]">{bubble.time}</p>
+          <p className="bg-[#fff] text-[#FFCC85]">{bubble.date}</p>
         </div>
-        <p>{bubble.message}</p>
+        <p>{bubble.pesan}</p>
       </div>
     </div>
   );

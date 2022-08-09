@@ -4,6 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
+import webtitle from "../assets/LogoTypography.png"
 
 const Navbar = ({ user, logout }) => {
   const [menu, setMenu] = useState(false);
@@ -12,9 +13,7 @@ const Navbar = ({ user, logout }) => {
     <div className="flex h-[80px] items-center sticky top-0 z-50 py-4 px-12 shadow-xl bg-[#fff]">
       {/* Logo */}
       <Link to="/">
-        <div className="flex items-center text-[#FFAA33] text-2xl">
-          Study<span className="font-bold">Mate</span>
-        </div>
+        <img src={webtitle} alt='wave' className="h-12"/>
       </Link>
 
       {/* Profile */}
@@ -42,7 +41,7 @@ const Navbar = ({ user, logout }) => {
             <div className="flex flex-col text-[#fff] divide-y-[1px]">
               <button className="flex items-center justify-center gap-1  px-4 py-2 rounded-t-lg hover:bg-[#9881DA] ">
                 <IoSettingsOutline />
-                Settings
+                <Link to="/settings"> Settings </Link>
               </button>
               <button
                 className="flex items-center justify-center gap-1 px-4 py-2 rounded-b-lg hover:bg-[#9881DA] "

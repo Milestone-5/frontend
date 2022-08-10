@@ -26,6 +26,10 @@ const Discussion = () => {
     })
     .catch(err => console.log(err))
   }, [])
+
+  useEffect(() => {
+    setUsedRooms(rooms)
+  }, [rooms])
   
   return (
     <>

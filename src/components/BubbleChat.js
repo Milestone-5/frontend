@@ -1,5 +1,6 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const BubbleChat = ({ bubble }) => {
   return (
@@ -9,7 +10,12 @@ const BubbleChat = ({ bubble }) => {
         <div className="flex gap-12 items-center w-full justify-between">
           <div className="flex gap-2 items-center">
             <CgProfile size={30} color={"#44288F"} />
-            <p className="bg-[#fff] text-[#44288F]">@{bubble.sender}</p>
+            <Link
+              to={"/profile/" + bubble.sender}
+              className="bg-[#fff] text-[#44288F]"
+            >
+              @{bubble.sender}
+            </Link>
           </div>
           <p className="bg-[#fff] text-[#FFCC85]">{bubble.date}</p>
         </div>

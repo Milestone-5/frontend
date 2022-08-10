@@ -44,7 +44,7 @@ const Discussion = () => {
                 </button>
               </h1>
             </div>
-              <CreateRoom/>
+            <CreateRoom />
           </div>
         </div>
       )}

@@ -1,13 +1,13 @@
-import React, {useState } from 'react'
-import { TextField } from '@mui/material';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CreateRoom() {
   const [topic, setTopic] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if(localStorage.getItem("user")){
@@ -25,19 +25,32 @@ function CreateRoom() {
   };
 
   return (
-            <div className="p-5">
-              <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
-                <TextField label="Room Topic" required onChange={e => setTopic(e.target.value)}/>
-                <TextField label="Room Name" required onChange={e => setName(e.target.value)}/>
-                <TextField label="Room Description" multiline rows={4} onChange={e => setDescription(e.target.value)}/>
-                <input
-                  type="submit"
-                  value="Create Room"
-                  className="rounded-lg px-4 py-2 text-[#fff] bg-[#5E39C4] hover:bg-[#9881DA] transition duration-200 shadow-md cursor-pointer"
-                />
-              </form>
-            </div>
-  )
+    <div className="p-5">
+      <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
+        <TextField
+          label="Room Topic"
+          required
+          onChange={(e) => setTopic(e.target.value)}
+        />
+        <TextField
+          label="Room Name"
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          label="Room Description"
+          multiline
+          rows={4}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          type="submit"
+          value="Create Room"
+          className="rounded-lg px-4 py-2 text-[#fff] bg-[#5E39C4] hover:bg-[#9881DA] transition duration-200 shadow-md cursor-pointer"
+        />
+      </form>
+    </div>
+  );
 }
 
-export default CreateRoom
+export default CreateRoom;

@@ -70,6 +70,7 @@ export const users = [
     id: 1,
     name: "Ceavin Rufus",
     username: "ceavinrufus",
+    password: "testes",
     bio: "Halo gan",
   },
 ];

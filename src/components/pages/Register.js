@@ -5,22 +5,26 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/api/register',{
+
+    axios
+      .post("http://localhost:4000/api/register", {
         name,
         username,
-        password
-    }).then(res => {
-        localStorage.setItem("user", JSON.stringify(res.data))
-        navigate('/')
-    }).catch(err => console.log(err))
-    
+        password,
+      })
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/");
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

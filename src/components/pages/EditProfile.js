@@ -6,12 +6,14 @@ import profpic from "../../assets/Logo.png"; /*ini nanti diganti */
 import { flexbox } from "@mui/system";
 
 const EditProfile = ({ user }) => {
-  const [username, setUsername] = useState("");
-  const [bio, setBio] = useState("");
+  const [username, setUsername] = useState(user ? user.username : "");
+  const [bio, setBio] = useState(user ? user.bio : "");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    navigate("/discussion");
   };
 
   return (

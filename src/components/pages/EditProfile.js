@@ -17,7 +17,7 @@ const EditProfile = ({ user }) => {
   return (
     <div className="flex justify-center bg-[#F58F00] h-screen">
       {user && (
-        <div className="mt-10 w-1/3">
+        <div className="mt-10 w-2/3 lg:w-1/2">
           <div className="bg-[#FFFFFF] rounded-xl">
             <h1 className="mb-7 p-3 text-center font-bold rounded-t-xl text-3xl bg-[#FFCC85]">
               Edit Profile

@@ -70,7 +70,7 @@ const Room = () => {
             disabled={isJoined}
             className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] disabled:bg-[#9881DA] disabled:cursor-not-allowed"
           >
-            Join Room
+            {isJoined ? "Joined" : "Join Room"}
           </button>
         </div>
       </div>

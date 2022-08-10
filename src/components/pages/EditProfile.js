@@ -6,6 +6,7 @@ import profpic from "../../assets/Logo.png"; /*ini nanti diganti */
 import { flexbox } from "@mui/system";
 
 const EditProfile = ({ user }) => {
+  const [name, setName] = useState( user ? user.name : "");
   const [username, setUsername] = useState(user ? user.username : "");
   const [bio, setBio] = useState(user ? user.bio : "");
   const navigate = useNavigate();
@@ -37,6 +38,15 @@ const EditProfile = ({ user }) => {
               </div>
 
               <form className="flex flex-col space-y-7" onSubmit={handleSubmit}>
+
+                {/* Change Display Name*/}
+                <TextField
+                  className="rounded-xl"
+                  label="Change name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+
                 {/* Change Username */}
                 <TextField
                   className="rounded-xl"

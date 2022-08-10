@@ -11,8 +11,8 @@ function CreateRoom() {
 
   const handleSubmit = () => {
     if(localStorage.getItem("user")){
-      axios.post("http://localhost:4000/api/create-topic", {
-        subject: topic, 
+      axios.post("http://localhost:4000/api/create-room", {
+        topic: topic, 
         name: name,
         description: description,
         user: JSON.parse(localStorage.getItem("user")).username

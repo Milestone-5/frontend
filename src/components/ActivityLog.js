@@ -1,8 +1,15 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Log from "./Log";
-import { messages } from "../db";
 
 const ActivityLog = () => {
+  const [messages, setMessages] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/api/get-last-pesan')
+    .then(res => setMessages(res.data.reverse()))
+  }, [])
+
   return (
     <div className="divide-y-2">
       <div className="shadow-md">
@@ -12,7 +19,7 @@ const ActivityLog = () => {
           </div>
         </div>
         <div className="bg-[#fff] p-2 rounded-b-md space-y-2">
-          {messages.reverse().map((log) => (
+          {messages.map((log) => (
             <Log log={log} />
           ))}
         </div>

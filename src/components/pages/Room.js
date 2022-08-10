@@ -26,14 +26,13 @@ const Room = () => {
   useEffect(() => {
     if(room.users){
       socket.emit('join-room', room._id)
-      axios.get(`http://localhost:4000/api/get-pesan/?topic=${room._id}`)
+      axios.get(`http://localhost:4000/api/get-pesan/?room=${room._id}`)
       .then( res => setPesans(res.data))
       .catch( err => console.log(err))
     }
   }, [room])
 
   socket.on('receive-message', data => {
-    console.log(data);
     if(!(pesans.includes(data))){
         setPesans([...pesans, data])
     }
@@ -48,6 +47,7 @@ const Room = () => {
           JSON.parse(localStorage.getItem('user')).username
       )
     }
+    console.log(room._id);
   }
 
   return (

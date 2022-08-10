@@ -1,8 +1,17 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
 const Log = ({ log }) => {
+  const [room, setRoom] = useState("")
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/get-room-name/?_id=${log.roomId}`)
+    .then(res => setRoom(res.data))
+    .catch(err => console.log(err))
+  }, [])
+
   return (
     <div className="border border-[#FFCC85] text-[#000] rounded-md px-4 py-2">
       <div className="flex items-center gap-2">
@@ -11,22 +20,22 @@ const Log = ({ log }) => {
         </div>
         <div className="">
           <Link
-            to={"/profile/" + log.username}
+            to={"/profile/" + log.sender}
             className="text-[12px] font-bold text-[#5E39C4]"
           >
-            @{log.username}
+            @{log.sender}
           </Link>
-          <p className="text-[12px] text-[#000]">at {log.time}</p>
+          <p className="text-[12px] text-[#000]">at {log.date}</p>
         </div>
       </div>
       <p className="text-sm my-1">
         in{" "}
         <Link className="text-[#5E39C4] font-bold" to="/">
-          {log.room}
+          {room}
         </Link>
       </p>
       <div className="bg-[#FFCC85] px-2 py-1 rounded-sm text-sm mb-1">
-        {log.message}
+        {log.pesan}
       </div>
     </div>
   );

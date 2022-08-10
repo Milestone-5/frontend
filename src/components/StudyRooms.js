@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import RoomsCard from "./RoomsCard";
-import axios from "axios";
 
-const StudyRooms = ({ onClick }) => {
-  const [rooms, setRooms] = useState([])
-
-  useEffect(() => {
-    axios.get("http://localhost:4000/api/get-topics")
-    .then(res => setRooms(res.data))
-    .catch(err => console.log(err))
-  }, [])
+const StudyRooms = ({ onClick, rooms }) => {
 
   return (
     <>
@@ -18,7 +10,7 @@ const StudyRooms = ({ onClick }) => {
         <div className="flex items-center justify-between mb-2">
           <div className="">
             <h1 className="font-bold">STUDY ROOMS</h1>
-            <p>3 rooms available</p>
+            <p>{rooms.length} rooms available</p>
           </div>
           <div className="flex">
             <button

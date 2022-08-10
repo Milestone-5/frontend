@@ -13,7 +13,7 @@ const RoomsCard = ({ room }) => {
               <h1 className="text-xl font-bold">{room.name}</h1>
             </div>
             <div className="rounded-full bg-[#FFCC85] text-sm text-[#000] px-2 py-1 font-bold">
-              {room.subject}
+              {room.topic}
             </div>
           </div>
 

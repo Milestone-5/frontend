@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BrowseTopics from "../BrowseTopics";
 import ActivityLog from "../ActivityLog";
 import StudyRooms from "../StudyRooms";
 import { GrClose } from "react-icons/gr";
 import CreateRoom from "../CreateRoom";
+import axios from "axios";
 
 const Discussion = () => {
   const [modal, setModal] = useState(false);
+  const [rooms, setRooms] = useState([])
+  const [usedRooms, setUsedRooms] = useState([])
 
   const toggleModal = () => {
     setModal(!modal);
-  };
+  }
 
+  const changeRoom = value => {
+    setUsedRooms(rooms.filter(e => e.topic === value))
+  }
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/get-rooms")
+    .then(res => {
+      setRooms(res.data)
+    })
+    .catch(err => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    setUsedRooms(rooms)
+  }, [rooms])
+  
   return (
     <>
       {modal && (
@@ -35,8 +54,8 @@ const Discussion = () => {
       )}
       <div className="bg-[#F58F00] h-screen py-8 px-12">
         <div className="grid grid-cols-[1fr_4fr_1fr] gap-8 text-[#fff] ">
-          <BrowseTopics />
-          <StudyRooms onClick={toggleModal} />
+          <BrowseTopics changeRoom={changeRoom}/>
+          <StudyRooms onClick={toggleModal} rooms={usedRooms} />
           <ActivityLog />
         </div>
       </div>

@@ -4,7 +4,7 @@ import Discussion from "./components/pages/Discussion";
 import LandingPage from "./components/pages/LandingPage";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
-import Settings from "./components/pages/Settings";
+import EditProfile from "./components/pages/EditProfile";
 // import Profile from "./components/pages/Profile";
 import Room from "./components/pages/Room";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -21,7 +21,7 @@ const RoutesConfig = ({ user }) => {
       <Route path="*" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/editprofile" element={<EditProfile user={user} />} />
     </Routes>
   );
 };

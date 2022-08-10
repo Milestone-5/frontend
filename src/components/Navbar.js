@@ -4,7 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
-import webtitle from "../assets/LogoTypography.png"
+import webtitle from "../assets/LogoTypography.png";
 
 const Navbar = ({ user, logout }) => {
   const [menu, setMenu] = useState(false);
@@ -13,13 +13,15 @@ const Navbar = ({ user, logout }) => {
     <div className="flex h-[80px] items-center sticky top-0 z-50 py-4 px-12 shadow-xl bg-[#fff]">
       {/* Logo */}
       <Link to="/">
-        <img src={webtitle} alt='wave' className="h-12"/>
+        <img src={webtitle} alt="wave" className="h-12" />
       </Link>
 
       {/* Profile */}
       <div className="flex flex-grow justify-end items-center gap-2">
         <div className="">
-          <CgProfile size={30} color={"#44288F"} />
+          <Link to="/editprofile">
+            <CgProfile size={30} color={"#44288F"} />
+          </Link>
         </div>
         {user ? (
           <>

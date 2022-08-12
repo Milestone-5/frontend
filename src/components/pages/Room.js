@@ -24,19 +24,20 @@ const Room = () => {
   }, []);
 
   useEffect(() => {
-    if(room.users){
-      socket.emit('join-room', room._id)
-      axios.get(`http://localhost:4000/api/get-pesan/?room=${room._id}`)
-      .then( res => setPesans(res.data))
-      .catch( err => console.log(err))
+    if (room.users) {
+      socket.emit("join-room", room._id);
+      axios
+        .get(`http://localhost:4000/api/get-pesan/?room=${room._id}`)
+        .then((res) => setPesans(res.data))
+        .catch((err) => console.log(err));
     }
-  }, [room])
+  }, [room]);
 
-  socket.on('receive-message', data => {
-    if(!(pesans.includes(data))){
-        setPesans([...pesans, data])
+  socket.on("receive-message", (data) => {
+    if (!pesans.includes(data)) {
+      setPesans([...pesans, data]);
     }
-  })
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,10 +49,10 @@ const Room = () => {
         JSON.parse(localStorage.getItem("user")).username
       );
     }
-  }
+  };
 
   return (
-    <div className="bg-[#F58F00] h-screen py-4 px-12">
+    <div className="bg-[#F58F00] min-h-screen py-4 px-12">
       {/* Room Header */}
       <div className="flex items-center justify-between mb-5 text-[#fff] ">
         <div className="">
@@ -83,7 +84,7 @@ const Room = () => {
 
       <div className="grid grid-cols-[3fr_1fr] gap-8 text-[#fff]">
         {/* Chat */}
-        <div className="bg-[#fff] rounded-xl text-[#000] h-[700px]">
+        <div className="bg-[#fff] rounded-xl text-[#000] h-[700px] ">
           <div className="p-8 flex flex-col justify-between h-[700px]">
             <div className="space-y-4 overflow-y-auto ">
               {pesans.map((bubble) => (

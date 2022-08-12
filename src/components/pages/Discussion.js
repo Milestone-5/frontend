@@ -8,29 +8,35 @@ import axios from "axios";
 
 const Discussion = () => {
   const [modal, setModal] = useState(false);
-  const [rooms, setRooms] = useState([])
-  const [usedRooms, setUsedRooms] = useState([])
+  const [rooms, setRooms] = useState([]);
+  const [usedRooms, setUsedRooms] = useState([]);
 
   const toggleModal = () => {
     setModal(!modal);
-  }
+  };
 
-  const changeRoom = value => {
-    setUsedRooms(rooms.filter(e => e.topic === value))
-  }
-
-  useEffect(() => {
-    axios.get("http://localhost:4000/api/get-rooms")
-    .then(res => {
-      setRooms(res.data)
-    })
-    .catch(err => console.log(err))
-  }, [])
+  const changeRoom = (value) => {
+    if (value === "All") {
+      console.log(rooms);
+      setUsedRooms(rooms);
+    } else {
+      setUsedRooms(rooms.filter((e) => e.topic === value));
+    }
+  };
 
   useEffect(() => {
-    setUsedRooms(rooms)
-  }, [rooms])
-  
+    axios
+      .get("http://localhost:4000/api/get-rooms")
+      .then((res) => {
+        setRooms(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    setUsedRooms(rooms);
+  }, [rooms]);
+
   return (
     <>
       {modal && (
@@ -54,7 +60,7 @@ const Discussion = () => {
       )}
       <div className="bg-[#F58F00] h-screen py-8 px-12">
         <div className="grid grid-cols-[1fr_4fr_1fr] gap-8 text-[#fff] ">
-          <BrowseTopics changeRoom={changeRoom}/>
+          <BrowseTopics changeRoom={changeRoom} rooms={rooms} />
           <StudyRooms onClick={toggleModal} rooms={usedRooms} />
           <ActivityLog />
         </div>

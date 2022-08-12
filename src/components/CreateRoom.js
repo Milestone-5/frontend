@@ -10,17 +10,18 @@ function CreateRoom() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if(localStorage.getItem("user")){
-      axios.post("http://localhost:4000/api/create-room", {
-        topic: topic, 
-        name: name,
-        description: description,
-        user: JSON.parse(localStorage.getItem("user")).username
-      })
-      .then(res => console.log(res.data))
-      .then(err => console.log(err))
-    }else{
-      navigate("/login")
+    if (topic.toLowerCase() !== "all") {
+      axios
+        .post("http://localhost:4000/api/create-room", {
+          topic: topic,
+          name: name,
+          description: description,
+          user: JSON.parse(localStorage.getItem("user")).username,
+        })
+        .then((res) => console.log(res.data))
+        .then((err) => console.log(err));
+    } else {
+      alert("Wrong input!");
     }
   };
 
@@ -30,6 +31,7 @@ function CreateRoom() {
         <TextField
           label="Room Topic"
           required
+          error={topic.toLowerCase() === "all"}
           onChange={(e) => setTopic(e.target.value)}
         />
         <TextField

@@ -1,4 +1,5 @@
 const models = require("./Models");
+const bcrypt = require("bcryptjs");
 
 // set up multer
 // const multer = require('multer');
@@ -22,10 +23,12 @@ const models = require("./Models");
 
 // create user
 exports.buatUser = async (req, res) => {
+  const password = await bcrypt.hash(req.body.password, 10);
+
   const user = new models.user({
     name: req.body.name,
     username: req.body.username,
-    password: req.body.password,
+    password: password,
     bio: "",
     photoProfile: "-",
   });
@@ -43,7 +46,7 @@ exports.loginUser = async (req, res) => {
   // cek apakah akun ada berdasar email dan password benar
   const akunAda = await models.user.findOne({ username: req.query.username });
   if (akunAda) {
-    const passwordBenar = req.query.password === akunAda.password;
+    const passwordBenar = bcrypt.compare(req.query.password, akunAda.password);
     if (passwordBenar) {
       res.send(akunAda);
     } else {

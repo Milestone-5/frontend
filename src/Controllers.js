@@ -22,6 +22,16 @@ const {body, validationResult} = require('express-validator')
 //     res.send(req.file.path).status(200)
 // }
 
+// validator 
+exports.validasiUser = [
+  body('username').custom(value => {
+    return models.user.findOne({username: value}).then(user => {
+      if(user){
+        return Promise.reject('Username sudah terdaftar')
+      }
+    })
+  })
+]
 // create user
 exports.buatUser = async (req, res) => {
   const errors = validationResult(req)

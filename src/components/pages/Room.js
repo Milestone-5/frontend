@@ -7,9 +7,9 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3001");
 
-const Room = () => {
+const Room = ({ user }) => {
   const location = useLocation();
-  const [isJoined, setIsJoined] = useState(true);
+  const [isJoined, setIsJoined] = useState(false);
   const [room, setRoom] = useState({});
   const [pesan, setPesan] = useState("");
   const [pesans, setPesans] = useState([]);
@@ -21,6 +21,9 @@ const Room = () => {
 
   useEffect(() => {
     setRoom(location.state);
+    if (user) {
+      setIsJoined(location.state.users.includes(user.username));
+    }
   }, []);
 
   useEffect(() => {
@@ -51,6 +54,22 @@ const Room = () => {
     }
   };
 
+  const handleJoin = (e) => {
+    e.preventDefault();
+
+    if (user) {
+      axios
+        .post("http://localhost:4000/api/update-room", {
+          _id: room._id,
+          users: [...room.users, user.username],
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <div className="bg-[#F58F00] min-h-screen py-4 px-12">
       {/* Room Header */}
@@ -60,10 +79,20 @@ const Room = () => {
           <h1 className="text-xl">{room.description && room.description}</h1>
         </div>
 
-        <div className="flex">
+        <div className="flex gap-2">
+          {room.users ? (
+            room.users[0] === user && (
+              <button className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#ee1818] hover:bg-[#e45c5c] disabled:cursor-not-allowed">
+                Delete Room
+              </button>
+            )
+          ) : (
+            <></>
+          )}
           <button
             disabled={isJoined}
             className="flex items-center gap-2 rounded-lg px-4 py-2 bg-[#5E39C4] hover:bg-[#9881DA] disabled:bg-[#9881DA] disabled:cursor-not-allowed"
+            onClick={handleJoin}
           >
             {isJoined ? "Joined" : "Join Room"}
           </button>

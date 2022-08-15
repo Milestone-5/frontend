@@ -8,13 +8,15 @@ import EditProfile from "./components/pages/EditProfile";
 // import Profile from "./components/pages/Profile";
 import Room from "./components/pages/Room";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import Settings from "./components/Settings";
 
 const RoutesConfig = ({ user }) => {
   return (
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path="/discussion" element={<Discussion />} />
-        <Route path="/room" element={<Room />} />
+        <Route path="/room" element={<Room user={user} />} />
+        <Route path="/settings" element={<Settings user={user} />} />
         {/* <Route path="/profile/:username" element={<Profile />} /> */}
       </Route>
       <Route path="/" element={<LandingPage />} />

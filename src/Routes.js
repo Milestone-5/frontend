@@ -3,9 +3,10 @@ const app = express()
 const Controllers = require('./Controllers')
 
 // user
-app.post('/register', Controllers.buatUser)
+app.post('/register', Controllers.validasiUser[0], Controllers.buatUser)
 app.get('/login', Controllers.loginUser)
 app.get('/get-user', Controllers.getUser)
+app.get('/edit-profile',Controllers.validasiUser[0], Controllers.editProfile)
 // app.post('/create-profile', Controllers.uploadPhotoProfile, Controllers.buatPhotoProfile)
 
 // room

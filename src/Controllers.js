@@ -1,5 +1,6 @@
 const models = require("./Models");
 const bcrypt = require("bcryptjs");
+const {body, validationResult} = require('express-validator')
 
 // set up multer
 // const multer = require('multer');
@@ -23,13 +24,17 @@ const bcrypt = require("bcryptjs");
 
 // create user
 exports.buatUser = async (req, res) => {
+  const errors = validationResult(req)
+  if(!errors.isEmpty()){
+    res.send(400).json({errors: errors.array()})
+  }
   const password = await bcrypt.hash(req.body.password, 10);
 
   const user = new models.user({
     name: req.body.name,
     username: req.body.username,
-    password: password,
     bio: "",
+    password: password,
     photoProfile: "-",
   });
 
@@ -62,6 +67,16 @@ exports.getUser = async (req, res) => {
   const user = await models.user.findOne({ _id: req.query._id });
   res.status(400).send(user.username);
 };
+
+//edit profille
+exports.editProfile = async (req, res) => {
+  const errors = validationResult(req)
+  if(!errors.isEmpty()){
+    res.send(400).json({errors: errors.array()})
+  }
+  const user = await models.user.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, bio: req.body.bio}, {new: true})
+  res.status(200).send(user)
+}
 
 // create room
 exports.createRoom = async (req, res) => {

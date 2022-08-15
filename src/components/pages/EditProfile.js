@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import profpic from "../../assets/Logo.png"; /*ini nanti diganti */
 import { flexbox } from "@mui/system";
@@ -14,7 +15,7 @@ const EditProfile = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/discussion");
+    navigate("/profile");
   };
 
   return (
@@ -29,7 +30,7 @@ const EditProfile = ({ user }) => {
             <div className="p-10">
               <div className="flex justify-center mb-10 items-center">
                 {/* Anggep ini profile picturenya */}
-                <img src={profpic} className="h-40 bg-[#FFFFFF]" />
+                <CgProfile size={175} color={"#44288F"} />
 
                 <div className="flex-col ml-8">
                   <p className="text-3xl font-bold"> {user.name} </p>
@@ -55,7 +56,7 @@ const EditProfile = ({ user }) => {
                   value={username}
                 />
 
-                {/* Change Password */}
+                {/* Change Bio */}
                 <TextField
                   className="rounded-xl"
                   label="Change bio"

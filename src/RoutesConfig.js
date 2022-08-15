@@ -8,7 +8,7 @@ import EditProfile from "./components/pages/EditProfile";
 // import Profile from "./components/pages/Profile";
 import Room from "./components/pages/Room";
 import PrivateRoutes from "./utils/PrivateRoutes";
-import Settings from "./components/Settings";
+import Settings from "./components/pages/Settings";
 
 const RoutesConfig = ({ user }) => {
   return (

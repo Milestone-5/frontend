@@ -22,22 +22,22 @@ const {body, validationResult} = require('express-validator')
 //     res.send(req.file.path).status(200)
 // }
 
-// validator 
+// validator
 exports.validasiUser = [
-  body('username').custom(value => {
-    return models.user.findOne({username: value}).then(user => {
-        if(user){
-            return Promise.reject('Username sudah terdaftar')
-        }
-    })
-  })
-]
+  body("new_username").custom((value) => {
+    return models.user.findOne({ username: value }).then((user) => {
+      if (user) {
+        return Promise.reject("Username sudah terdaftar");
+      }
+    });
+  }),
+];
 
 // create user
 exports.buatUser = async (req, res) => {
-  const errors = validationResult(req)
-  if(!errors.isEmpty()){
-    res.send(400).send({errors: errors.array()})
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.send(400).send({ errors: errors.array() });
   }
   const password = await bcrypt.hash(req.body.password, 10);
 
@@ -79,16 +79,33 @@ exports.getUser = async (req, res) => {
   res.status(200).send(user);
 };
 
-//edit profille
+//edit profile
 exports.editProfile = async (req, res) => {
-  const errors = validationResult(req)
-  if(!errors.isEmpty()){
-    res.status(400).send({errors: errors.array()})
-  }else{
-    const user = await models.user.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, username: req.body.username, bio: req.body.bio}, {new: true})
-    res.status(200).send(user)
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).send({ errors: errors.array() });
+  } else {
+    const user = await models.user.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        name: req.body.name,
+        username: req.body.new_username,
+        bio: req.body.bio,
+      },
+      { new: true }
+    );
+    await models.pesan.updateMany(
+      { sender: req.body.old_username },
+      { sender: req.body.new_username }
+    );
+    await models.room.updateMany(
+      {},
+      { $set: { "users.$[user]": req.body.new_username } },
+      { arrayFilters: [{ user: req.body.old_username }] }
+    );
+    res.status(200).send(user);
   }
-}
+};
 
 // create room
 exports.createRoom = async (req, res) => {

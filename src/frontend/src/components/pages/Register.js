@@ -27,7 +27,7 @@ const Register = () => {
         })
         .catch((err) => alert(err));
     } else {
-      alert.apply("Password should be minimum 8 characters");
+      alert("Password should be minimum 8 characters");
     }
   };
 

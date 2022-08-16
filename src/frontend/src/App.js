@@ -39,12 +39,12 @@ function App() {
             <Route path="/myprofile/" element={<MyProfile />} />
             <Route path="/profile/:username" element={<Profile />} />
             <Route path="/settings" element={<Settings user={user} />} />
+            <Route path="/editprofile" element={<EditProfile user={user} />} />
           </Route>
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/editprofile" element={<EditProfile user={user} />} />
         </Routes>
       </main>
     </>

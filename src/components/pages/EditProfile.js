@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import axios from 'axios'
 
 const EditProfile = ({ user }) => {
   const [name, setName] = useState(user ? user.name : "");
@@ -12,7 +13,20 @@ const EditProfile = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/profile");
+    axios
+      .post("http://localhost:4000/api/edit-profile", {
+        _id: user._id,
+        name,
+        old_username: user.username,
+        new_username: username,
+        bio,
+      })
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate(`/profile/${username}`);
+        window.location.reload();
+      })
+      .catch((err) => alert("Username already taken"));
   };
 
   return (

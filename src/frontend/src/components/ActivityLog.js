@@ -11,14 +11,14 @@ const ActivityLog = ({ username }) => {
         setMessages(
           res.data
             .filter((e) => e.sender === username)
-            .reverse()
             .slice(-3)
+            .reverse()
         )
       );
     } else {
       axios
         .get("http://localhost:4000/api/get-last-pesan")
-        .then((res) => setMessages(res.data.reverse().slice(-3)));
+        .then((res) => setMessages(res.data.slice(-3).reverse()));
     }
   }, [username]);
 

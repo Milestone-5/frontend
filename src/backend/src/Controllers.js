@@ -3,24 +3,26 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 
 // set up multer
-const multer = require('multer');
+const multer = require("multer");
 const storage = multer.diskStorage({
-     destination: function (req, file, cb) {
-         cb(null, './uploads/')
-     },
-     filename: function (req, file, cb) {
-         const name = Date.now().toString() + '-' + file.originalname
-         cb(null, name)
-     }
- })
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function (req, file, cb) {
+    const name = Date.now().toString() + "-" + file.originalname;
+    cb(null, name);
+  },
+});
 
-exports.uploadPhotoProfile = multer({ storage: storage }).single('photoProfile')
+exports.uploadPhotoProfile = multer({ storage: storage }).single(
+  "photoProfile"
+);
 
 exports.buatPhotoProfile = (req, res) => {
-    // update user photo profile
-    console.log(req.file.path);
-    res.send(req.file.path).status(200)
-}
+  // update user photo profile
+  console.log(req.file.path);
+  res.send(req.file.path).status(200);
+};
 
 // validator
 exports.validasiUser = [

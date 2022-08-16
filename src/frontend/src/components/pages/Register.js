@@ -13,18 +13,22 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:4000/api/register", {
-        name,
-        username,
-        password,
-      })
-      .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
-        navigate("/");
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
+    if (password.length >= 8) {
+      axios
+        .post("http://localhost:4000/api/register", {
+          name,
+          username,
+          password,
+        })
+        .then((res) => {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          navigate("/");
+          window.location.reload();
+        })
+        .catch((err) => alert(err));
+    } else {
+      alert.apply("Password should be minimum 8 characters");
+    }
   };
 
   return (
@@ -51,6 +55,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             type={"password"}
             value={password}
+            error={password.length < 8}
             required
           />
           <input

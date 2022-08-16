@@ -26,17 +26,18 @@ const {body, validationResult} = require('express-validator')
 exports.validasiUser = [
   body('username').custom(value => {
     return models.user.findOne({username: value}).then(user => {
-      if(user){
-        return Promise.reject('Username sudah terdaftar')
-      }
+        if(user){
+            return Promise.reject('Username sudah terdaftar')
+        }
     })
   })
 ]
+
 // create user
 exports.buatUser = async (req, res) => {
   const errors = validationResult(req)
   if(!errors.isEmpty()){
-    res.send(400).json({errors: errors.array()})
+    res.send(400).send({errors: errors.array()})
   }
   const password = await bcrypt.hash(req.body.password, 10);
 
@@ -82,10 +83,11 @@ exports.getUser = async (req, res) => {
 exports.editProfile = async (req, res) => {
   const errors = validationResult(req)
   if(!errors.isEmpty()){
-    res.send(400).json({errors: errors.array()})
+    res.status(400).send({errors: errors.array()})
+  }else{
+    const user = await models.user.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, username: req.body.username, bio: req.body.bio}, {new: true})
+    res.status(200).send(user)
   }
-  const user = await models.user.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, bio: req.body.bio}, {new: true})
-  res.status(200).send(user)
 }
 
 // create room

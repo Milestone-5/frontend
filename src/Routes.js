@@ -6,7 +6,7 @@ const Controllers = require("./Controllers");
 app.post("/register", Controllers.validasiUser[0], Controllers.buatUser);
 app.get("/login", Controllers.loginUser);
 app.get("/get-user", Controllers.getUser);
-app.get("/edit-profile", Controllers.validasiUser[0], Controllers.editProfile);
+app.post("/edit-profile", Controllers.validasiUser[0], Controllers.editProfile);
 // app.post('/create-profile', Controllers.uploadPhotoProfile, Controllers.buatPhotoProfile)
 
 // room

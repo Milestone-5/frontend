@@ -14,13 +14,13 @@ const storage = multer.diskStorage({
      }
  })
 
-// exports.uploadPhotoProfile = multer({ storage: storage }).single('photoProfile')
+exports.uploadPhotoProfile = multer({ storage: storage }).single('photoProfile')
 
-// exports.buatPhotoProfile = (req, res) => {
-//     // update user photo profile
-//     console.log(req.file.path);
-//     res.send(req.file.path).status(200)
-// }
+exports.buatPhotoProfile = (req, res) => {
+    // update user photo profile
+    console.log(req.file.path);
+    res.send(req.file.path).status(200)
+}
 
 // validator
 exports.validasiUser = [

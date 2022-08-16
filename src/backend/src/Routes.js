@@ -7,7 +7,7 @@ app.post("/register", Controllers.validasiUser[0],Controllers.validasiUser[1], C
 app.get("/login", Controllers.loginUser);
 app.get("/get-user", Controllers.getUser);
 app.post("/edit-profile", Controllers.validasiUser[0], Controllers.editProfile);
-// app.post('/create-profile', Controllers.uploadPhotoProfile, Controllers.buatPhotoProfile)
+app.post('/create-profile', Controllers.uploadPhotoProfile, Controllers.buatPhotoProfile)
 
 // room
 app.post("/create-room", Controllers.createRoom);

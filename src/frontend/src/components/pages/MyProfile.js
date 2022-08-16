@@ -46,7 +46,9 @@ const MyProfile = () => {
       <div className="bg-[#F58F00] min-h-screen py-8 px-12 flex flex-col items-center">
         <div className="grid grid-row justify-center gap-1">
           {/*Pura-pura aja dulu ini dpnya*/}
-          <CgProfile size={200} color={"#000"} />
+          <div className="flex justify-center">
+            <CgProfile size={200} color={"#000"} />
+          </div>
           <p className="text-center text-3xl font-bold">{user && user.name}</p>
           <p className="text-center text-xl">@{user && user.username}</p>
           <div className="flex flex-col justify-center space-y-2 my-4">

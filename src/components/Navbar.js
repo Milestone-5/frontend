@@ -19,9 +19,11 @@ const Navbar = ({ user, logout }) => {
       {/* Profile */}
       <div className="flex flex-grow justify-end items-center gap-2">
         <div className="">
-          <Link to="/profile">
-            <CgProfile size={30} color={"#44288F"} />
-          </Link>
+          {user && (
+            <Link to={`/profile/${user.username}`} state={user}>
+              <CgProfile size={30} color={"#000"} />
+            </Link>
+          )}
         </div>
         {user ? (
           <>

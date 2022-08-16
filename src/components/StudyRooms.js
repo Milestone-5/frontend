@@ -3,7 +3,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import RoomsCard from "./RoomsCard";
 
 const StudyRooms = ({ onClick, rooms }) => {
-
   return (
     <>
       <div className="divide-y-2">
@@ -24,8 +23,8 @@ const StudyRooms = ({ onClick, rooms }) => {
           </div>
         </div>
         <div className="">
-          {rooms.map((room) => (
-            <RoomsCard room={room} />
+          {rooms.map((room, id) => (
+            <RoomsCard room={room} key={id} />
           ))}
         </div>
       </div>

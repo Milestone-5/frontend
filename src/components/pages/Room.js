@@ -151,7 +151,7 @@ const Room = ({ user }) => {
               room.users.map((username) => (
                 // <Link to={"/profile/" + username} className="text-[#5E39C4] ">
                 <div className="flex items-center gap-2 px-2 py-2">
-                  <CgProfile size={30} color={"#44288F"} />
+                  <CgProfile size={30} color={"#000"} />
                   <Link
                     to={"/profile/" + username}
                     style={{ color: "#44288F" }}

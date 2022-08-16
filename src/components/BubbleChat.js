@@ -9,7 +9,7 @@ const BubbleChat = ({ bubble }) => {
       <div className="py-4 px-8 space-y-2 w-full">
         <div className="flex gap-12 items-center w-full justify-between">
           <div className="flex gap-2 items-center">
-            <CgProfile size={30} color={"#44288F"} />
+            <CgProfile size={30} color={"#000"} />
             <Link
               to={"/profile/" + bubble.sender}
               className="bg-[#fff] text-[#44288F]"

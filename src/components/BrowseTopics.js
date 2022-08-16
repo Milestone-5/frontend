@@ -36,8 +36,9 @@ const BrowseTopics = ({ changeRoom, rooms }) => {
             </div>
           </div>
         </div>
-        {topics.map((topic) => (
+        {topics.map((topic, id) => (
           <div
+            key={id}
             className="flex flex-col bg-[#fff] hover:bg-[#FFCC85] px-4 py-2 shadow-md rounded-xl mt-4 transition duration-200 cursor-pointer"
             onClick={(e) => onChangeRoom(topic.name)}
             style={{

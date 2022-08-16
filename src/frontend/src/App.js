@@ -9,6 +9,7 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import EditProfile from "./components/pages/EditProfile";
 import Profile from "./components/pages/Profile";
+import MyProfile from "./components/pages/MyProfile";
 import Room from "./components/pages/Room";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Settings from "./components/pages/Settings";
@@ -35,6 +36,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/discussion" element={<Discussion />} />
             <Route path="/room" element={<Room user={user} />} />
+            <Route path="/myprofile/" element={<MyProfile />} />
             <Route path="/profile/:username" element={<Profile />} />
             <Route path="/settings" element={<Settings user={user} />} />
           </Route>

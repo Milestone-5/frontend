@@ -1,37 +1,41 @@
 import React, { useState, useEffect } from "react";
 import ActivityLog from "../ActivityLog";
 import { CgProfile } from "react-icons/cg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import RoomsCard from "../RoomsCard";
 
-const Profile = () => {
-  const { username } = useParams();
+const MyProfile = () => {
+  const location = useLocation();
   const [user, setUser] = useState({});
   const [rooms, setRooms] = useState([]);
   const [usedRooms, setUsedRooms] = useState([]);
 
   useEffect(() => {
-    if (username) {
-      console.log(username);
+    if (location.state) {
+      console.log(location.state);
       axios
-        .get(`http://localhost:4000/api/get-user/?username=${username}`)
+        .get(
+          `http://localhost:4000/api/get-user/?username=${location.state.username}`
+        )
         .then((res) => {
           console.log(res);
           setUser(res.data);
         })
         .catch((err) => console.log(err));
     }
-  }, [username]);
+  }, [user]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/get-rooms-by-host/?hostname=${username}`)
+      .get(
+        `http://localhost:4000/api/get-rooms-by-host/?hostname=${location.state.username}`
+      )
       .then((res) => {
         setRooms(res.data);
       })
       .catch((err) => console.log(err));
-  }, [username]);
+  }, [user]);
 
   useEffect(() => {
     setUsedRooms(rooms);
@@ -46,6 +50,12 @@ const Profile = () => {
           <p className="text-center text-3xl font-bold">{user && user.name}</p>
           <p className="text-center text-xl">@{user && user.username}</p>
           <div className="flex flex-col justify-center space-y-2 my-4">
+            <Link
+              to="/editprofile"
+              className="px-4 py-2 bg-[#5E39C4] text-center text-[#ffffff] hover:bg-[#9881DA] rounded-3xl"
+            >
+              <button>Edit Profile</button>
+            </Link>
             <Link
               to="/discussion"
               className="px-4 py-2 border bg-white text-center text-[#000] hover:bg-transparent rounded-3xl"
@@ -82,11 +92,11 @@ const Profile = () => {
             </div>
           </div>
           {/*Bagian Kanan*/}
-          <ActivityLog username={username} />
+          <ActivityLog username={location.state.username} />
         </div>
       </div>
     </>
   );
 };
 
-export default Profile;
+export default MyProfile;

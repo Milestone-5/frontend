@@ -20,7 +20,7 @@ const Navbar = ({ user, logout }) => {
       <div className="flex flex-grow justify-end items-center gap-2">
         <div className="">
           {user && (
-            <Link to={`/profile/${user.username}`} state={user}>
+            <Link to={`/myprofile`} state={user}>
               <CgProfile size={30} color={"#000"} />
             </Link>
           )}

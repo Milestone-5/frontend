@@ -74,8 +74,8 @@ exports.loginUser = async (req, res) => {
 
 // get user
 exports.getUser = async (req, res) => {
-  const user = await models.user.findOne({ _id: req.query._id });
-  res.status(400).send(user.username);
+  const user = await models.user.findOne({ username: req.query.username });
+  res.status(200).send(user);
 };
 
 //edit profille
@@ -132,16 +132,22 @@ exports.updateRoom = async (req, res) => {
   res.status(200).send(room);
 };
 
-// get room
-exports.getRoom = async (req, res) => {
+// get rooms
+exports.getRooms = async (req, res) => {
   const room = await models.room.find();
   res.status(200).send(room);
 };
 
-// get room name
-exports.getRoomName = async (req, res) => {
+// get rooms by host
+exports.getRoomsByHost = async (req, res) => {
+  const room = await models.room.find({ "users.0": req.query.hostname });
+  res.status(200).send(room);
+};
+
+// get room
+exports.getRoom = async (req, res) => {
   const room = await models.room.findOne({ _id: req.query._id });
-  res.status(200).send(room.name);
+  res.status(200).send(room);
 };
 
 // get topics
@@ -177,5 +183,5 @@ exports.getPesan = async (req, res) => {
 // get last pesan
 exports.getLastPesan = async (req, res) => {
   const pesan = await models.pesan.find();
-  res.send(pesan.slice(-3));
+  res.send(pesan);
 };

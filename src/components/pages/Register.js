@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { users } from "../../db";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -59,6 +59,12 @@ const Register = () => {
             className="rounded-lg px-4 py-2 text-[#fff] bg-[#5E39C4] hover:bg-[#9881DA] transition duration-200 shadow-md cursor-pointer"
           />
         </form>
+        <div className="flex flex-col items-center px-5 pb-5">
+          <h1>Already have an account?</h1>
+          <Link className="underline text-[#5E39C4] font-bold" to="/register">
+            Register
+          </Link>
+        </div>
       </div>
     </div>
   );

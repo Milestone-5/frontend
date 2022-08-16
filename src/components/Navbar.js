@@ -36,7 +36,11 @@ const Navbar = ({ user, logout }) => {
             </button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="flex justify-center">
+            <button className="rounded-full px-6 py-2 bg-[#5E39C4] hover:bg-[#9881DA] text-[#fff] transition duration-200">
+              Login
+            </button>
+          </Link>
         )}
 
         {/* Menu */}

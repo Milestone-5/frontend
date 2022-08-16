@@ -46,12 +46,18 @@ const Profile = () => {
           <p className="text-center text-3xl font-bold">{user && user.name}</p>
           <p className="text-center text-xl">@{user && user.username}</p>
           <div className="flex flex-col justify-center space-y-2 my-4">
-            <button class="px-4 py-2 bg-[#5E39C4] text-[#ffffff] hover:bg-[#9881DA] rounded-3xl">
-              <Link to="/editprofile"> Edit Profile </Link>
-            </button>
-            <button class="px-4 py-2 border bg-white text-[#000] hover:bg-transparent rounded-3xl">
-              <Link to="/discussion"> Back to Discussion</Link>
-            </button>
+            <Link
+              to="/editprofile"
+              className="px-4 py-2 bg-[#5E39C4] text-center text-[#ffffff] hover:bg-[#9881DA] rounded-3xl"
+            >
+              <button>Edit Profile</button>
+            </Link>
+            <Link
+              to="/discussion"
+              className="px-4 py-2 border bg-white text-center text-[#000] hover:bg-transparent rounded-3xl"
+            >
+              <button>Back to Discussion</button>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col text-left w-1/2">

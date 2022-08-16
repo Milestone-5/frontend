@@ -1,6 +1,6 @@
 const models = require("./Models");
 const bcrypt = require("bcryptjs");
-const {body, validationResult} = require('express-validator')
+const { body, validationResult } = require("express-validator");
 
 // set up multer
 const multer = require('multer');
@@ -31,8 +31,9 @@ exports.validasiUser = [
       }
     });
   }),
-  body('password').isLength({ min: 8 }).withMessage("Password minimal 8 karakter")
-
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Password minimal 8 karakter"),
 ];
 
 // create user
@@ -64,14 +65,17 @@ exports.loginUser = async (req, res) => {
   // cek apakah akun ada berdasar email dan password benar
   const akunAda = await models.user.findOne({ username: req.query.username });
   if (akunAda) {
-    const passwordBenar = bcrypt.compare(req.query.password, akunAda.password);
+    const passwordBenar = await bcrypt.compare(
+      req.query.password,
+      akunAda.password
+    );
     if (passwordBenar) {
       res.send(akunAda);
     } else {
-      res.status(400).send({ msg: "username or password wrong" });
+      res.status(400).send({ msg: "Username or password is wrong!" });
     }
   } else {
-    res.status(400).send({ msg: "username or password wrong" });
+    res.status(400).send({ msg: "Username or password is wrong!" });
   }
 };
 

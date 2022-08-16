@@ -33,12 +33,12 @@ Pastikan [git](https://git-scm.com/) dan [nodejs](https://nodejs.org/en/) ter-_i
 0. Ubah direktori ke lokasi yang Anda inginkan untuk mengunduh repo menggunakan perintah `cd [lokasi folder]`
 1. Clone repo menggunakan perintah `git clone https://github.com/ceavinr/Milestone02_K05`
 2. Jalankan _backend_:
-   1. Ubah direktori ke folder backend menggunakan perintah `cd backend`
+   1. Ubah direktori ke folder backend menggunakan perintah `cd src/backend`
    2. _Install_ semua _dependency_ yang dibutuhkan menggunakan perintah `npm install`
    3. _Install_ nodemon menggunakan perintah `npm i -g nodemon`
    4. Jalankan _backend_ menggunakan perintah `nodemon .`
 3. Jalankan _frontend_:
-   1. Menggunakan jendela _command line_ yang berbeda, ubah direktori ke folder frontend menggunakan perintah `cd frontend` (diasumsikan sudah berada di folder utama repo)
+   1. Menggunakan jendela _command line_ yang berbeda, ubah direktori ke folder frontend menggunakan perintah `cd src/frontend` (diasumsikan sudah berada di folder utama repo)
    2. _Install_ semua _dependency_ yang dibutuhkan menggunakan perintah `npm install`
    3. Jalankan _frontend_ menggunakan perintah `npm start`
 

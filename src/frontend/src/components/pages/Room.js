@@ -73,9 +73,9 @@ const Room = ({ user }) => {
   return (
     <div className="bg-[#F58F00] min-h-screen py-4 px-12">
       {/* Room Header */}
-      <div className="flex items-center justify-between mb-5 text-[#fff] ">
-        <div className="">
-          <h1 className="text-xl font-bold">{room.name && room.name}</h1>
+      <div className="flex items-center justify-between my-5 text-[#fff] ">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-bold">{room.name && room.name}</h1>
           <h1 className="text-xl">{room.description && room.description}</h1>
         </div>
 

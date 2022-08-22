@@ -10,6 +10,7 @@ const Discussion = () => {
   const [modal, setModal] = useState(false);
   const [rooms, setRooms] = useState([]);
   const [usedRooms, setUsedRooms] = useState([]);
+  const [increment, setIncrement] = useState(1);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -22,13 +23,15 @@ const Discussion = () => {
     } else {
       setUsedRooms(rooms.filter((e) => e.topic === value));
     }
+    setIncrement(1);
   };
 
   useEffect(() => {
     axios
       .get("http://localhost:4000/api/get-rooms")
       .then((res) => {
-        setRooms(res.data);
+        // Nanti mau dibikin pagination gitu buat roomnya
+        setRooms(res.data.reverse());
       })
       .catch((err) => console.log(err));
   }, []);
@@ -40,7 +43,7 @@ const Discussion = () => {
   return (
     <>
       {modal && (
-        <div className="fixed h-screen w-screen">
+        <div className="fixed min-h-screen w-screen">
           <div
             className="fixed w-full h-full p-0 bg-black/[0.6]"
             onClick={toggleModal}
@@ -58,10 +61,15 @@ const Discussion = () => {
           </div>
         </div>
       )}
-      <div className="bg-[#F58F00] h-screen py-8 px-12">
+      <div className="bg-[#F58F00] min-h-screen py-8 px-12">
         <div className="grid grid-cols-[1fr_4fr_1fr] gap-8 text-[#fff] ">
           <BrowseTopics changeRoom={changeRoom} rooms={rooms} />
-          <StudyRooms onClick={toggleModal} rooms={usedRooms} />
+          <StudyRooms
+            onClick={toggleModal}
+            rooms={usedRooms}
+            increment={increment}
+            setIncrement={setIncrement}
+          />
           <ActivityLog />
         </div>
       </div>

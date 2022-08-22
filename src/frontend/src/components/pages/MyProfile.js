@@ -4,12 +4,14 @@ import { CgProfile } from "react-icons/cg";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import RoomsCard from "../RoomsCard";
+import Pagination from "../Pagination";
 
 const MyProfile = () => {
   const location = useLocation();
   const [user, setUser] = useState({});
   const [rooms, setRooms] = useState([]);
-  const [usedRooms, setUsedRooms] = useState([]);
+  // const [usedRooms, setUsedRooms] = useState([]);
+  const [increment, setIncrement] = useState(1);
 
   useEffect(() => {
     if (location.state) {
@@ -24,7 +26,7 @@ const MyProfile = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     axios
@@ -32,14 +34,25 @@ const MyProfile = () => {
         `http://localhost:4000/api/get-rooms-by-host/?hostname=${location.state.username}`
       )
       .then((res) => {
-        setRooms(res.data);
+        setRooms(res.data.reverse());
       })
       .catch((err) => console.log(err));
-  }, [user]);
+  }, []);
 
-  useEffect(() => {
-    setUsedRooms(rooms);
-  }, [rooms]);
+  // useEffect(() => {
+  //   setUsedRooms(rooms);
+  // }, [rooms]);
+
+  const nextPage = () => {
+    if (increment < Math.ceil(rooms.length / 3)) {
+      setIncrement(increment + 1);
+    }
+  };
+  const previousPage = () => {
+    if (increment > 1) {
+      setIncrement(increment - 1);
+    }
+  };
 
   return (
     <>
@@ -80,15 +93,22 @@ const MyProfile = () => {
         <div className="grid grid-cols-[4fr_1fr] gap-8 text-[#fff] w-1/2">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <div className="">
-                <h1 className="font-bold">
-                  {rooms.length} {rooms.length > 1 ? "ROOMS" : "ROOM"} HOSTED BY{" "}
-                  {user && user.username}
+              <h1 className="font-bold">
+                {rooms.length} {rooms.length > 1 ? "ROOMS" : "ROOM"} HOSTED BY{" "}
+                {user && user.name}
+              </h1>
+              {rooms.length > 3 && (
+                <h1>
+                  <Pagination
+                    increment={increment}
+                    nextPage={nextPage}
+                    previousPage={previousPage}
+                  />
                 </h1>
-              </div>
+              )}
             </div>
             <div className="">
-              {usedRooms.map((room) => (
+              {rooms.slice((increment - 1) * 3, increment * 3).map((room) => (
                 <RoomsCard room={room} />
               ))}
             </div>

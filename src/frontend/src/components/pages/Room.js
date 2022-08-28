@@ -30,7 +30,9 @@ const Room = ({ user }) => {
     if (room.users) {
       socket.emit("join-room", room._id);
       axios
-        .get(`http://localhost:4000/api/get-pesan/?room=${room._id}`)
+        .get(
+          `https://api-studymate.herokuapp.com/api/get-pesan/?room=${room._id}`
+        )
         .then((res) => setPesans(res.data))
         .catch((err) => console.log(err));
     }
@@ -59,7 +61,7 @@ const Room = ({ user }) => {
 
     if (user) {
       axios
-        .post("http://localhost:4000/api/update-room", {
+        .post("https://api-studymate.herokuapp.com/api/update-room", {
           _id: room._id,
           users: [...room.users, user.username],
         })

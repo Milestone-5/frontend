@@ -8,7 +8,9 @@ const Log = ({ log }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/get-room/?_id=${log.roomId}`)
+      .get(
+        `https://api-studymate.herokuapp.com/api/get-room/?_id=${log.roomId}`
+      )
       .then((res) => setRoom(res.data))
       .catch((err) => console.log(err));
   }, []);

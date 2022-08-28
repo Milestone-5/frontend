@@ -13,7 +13,7 @@ const Login = () => {
 
     axios
       .get(
-        `http://localhost:4000/api/login/?username=${username}&password=${password}`
+        `https://api-studymate.herokuapp.com/api/login/?username=${username}&password=${password}`
       )
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));

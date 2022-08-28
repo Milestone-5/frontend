@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import axios from 'axios'
+import axios from "axios";
 
 const EditProfile = ({ user }) => {
   const [name, setName] = useState(user ? user.name : "");
@@ -14,7 +14,7 @@ const EditProfile = ({ user }) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/edit-profile", {
+      .post("https://api-studymate.herokuapp.com/api/edit-profile", {
         _id: user._id,
         name,
         old_username: user.username,

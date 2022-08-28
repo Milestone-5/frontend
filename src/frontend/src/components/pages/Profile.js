@@ -17,7 +17,9 @@ const Profile = () => {
     if (username) {
       console.log(username);
       axios
-        .get(`http://localhost:4000/api/get-user/?username=${username}`)
+        .get(
+          `https://api-studymate.herokuapp.com/api/get-user/?username=${username}`
+        )
         .then((res) => {
           console.log(res);
           setUser(res.data);
@@ -28,7 +30,9 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/get-rooms-by-host/?hostname=${username}`)
+      .get(
+        `https://api-studymate.herokuapp.com/api/get-rooms-by-host/?hostname=${username}`
+      )
       .then((res) => {
         setRooms(res.data.reverse());
       })

@@ -1,2 +1,2 @@
 [build]
-    base = "src/backend"
+    base = "src/frontend"

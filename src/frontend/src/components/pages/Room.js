@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://studymate-chat.herokuapp.com/");
 
 const Room = ({ user }) => {
   const navigate = useNavigate();

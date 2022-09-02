@@ -18,11 +18,7 @@ const Profile = () => {
       console.log(username);
       axios
         .get(
-<<<<<<< HEAD
-          `https://api-studymate.herokuapp.com/api/get-user/?username=${username}`
-=======
           `https://studymate-data.herokuapp.com/api/get-user/?username=${username}`
->>>>>>> e9add2c7e4fe84a83dd24480edeff3ca7b71bd1b
         )
         .then((res) => {
           console.log(res);

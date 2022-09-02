@@ -31,11 +31,7 @@ const MyProfile = () => {
   useEffect(() => {
     axios
       .get(
-<<<<<<< HEAD
-        `https://api-studymate.herokuapp.com/api/get-rooms-by-host/?hostname=${location.state.username}`
-=======
         `https://studymate-data.herokuapp.com/api/get-rooms-by-host/?hostname=${location.state.username}`
->>>>>>> e9add2c7e4fe84a83dd24480edeff3ca7b71bd1b
       )
       .then((res) => {
         setRooms(res.data.reverse());

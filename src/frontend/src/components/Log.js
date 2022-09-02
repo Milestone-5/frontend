@@ -16,7 +16,7 @@ const Log = ({ log }) => {
   }, []);
 
   return (
-    <div className="border border-[#FFCC85] text-[#000] rounded-md px-4 py-2">
+    <div className="border bg-white md:border-[#FFCC85] text-[#000] rounded-md px-4 py-2">
       <div className="flex items-center gap-2">
         <div className="">
           <CgProfile size={30} color={"#000"} />

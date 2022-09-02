@@ -84,7 +84,7 @@ const Profile = () => {
             ))}
           {/* </div> */}
         </div>
-        <div className="grid grid-cols-[4fr_1fr] gap-8 text-[#fff] w-1/2">
+        <div className="flex flex-col md:flex-row gap-8 text-[#fff] w-1/2">
           <div>
             <div className="flex items-center justify-between mb-2">
               <h1 className="font-bold">

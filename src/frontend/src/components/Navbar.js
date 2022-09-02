@@ -10,7 +10,7 @@ const Navbar = ({ user, logout }) => {
   const [menu, setMenu] = useState(false);
 
   return (
-    <div className="flex h-[80px] items-center sticky top-0 z-50 py-4 px-12 shadow-xl bg-[#fff]">
+    <div className="flex h-[80px] items-center sticky top-0 z-50 py-2 md:py-4 px-6 md:px-12 shadow-xl bg-[#fff]">
       {/* Logo */}
       <Link to="/">
         <img src={webtitle} alt="wave" className="h-12" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import BubbleChat from "../BubbleChat";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import io from "socket.io-client";
@@ -8,6 +8,7 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
 const Room = ({ user }) => {
+  const navigate = useNavigate()
   const location = useLocation();
   const [isJoined, setIsJoined] = useState(false);
   const [room, setRoom] = useState({});
@@ -21,12 +22,12 @@ const Room = ({ user }) => {
 
   useEffect(() => {
     setRoom(location.state);
-    if (user) {
-      setIsJoined(location.state.users.includes(user.username));
-    }
   }, []);
 
   useEffect(() => {
+    if (room.users) {
+      setIsJoined(room.users.includes(user.username));
+    }
     if (room.users) {
       socket.emit("join-room", room._id);
       axios
@@ -66,11 +67,16 @@ const Room = ({ user }) => {
           users: [...room.users, user.username],
         })
         .then((res) => {
-          console.log(res.data);
+          setRoom(res.data)
         })
         .catch((err) => console.log(err));
     }
   };
+
+  const toggleClass = () => {
+    document.querySelector('.participant').classList.toggle('h-0')
+    document.querySelector('.participant').classList.toggle('p-2')
+  }
 
   return (
     <div className="bg-[#F58F00] min-h-screen py-4 px-12">
@@ -113,10 +119,10 @@ const Room = ({ user }) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-[3fr_1fr] gap-8 text-[#fff]">
+      <div className="flex flex-col order-2 md:order-first md:flex-row gap-8 text-[#fff]">
         {/* Chat */}
-        <div className="bg-[#fff] rounded-xl text-[#000] h-[700px] ">
-          <div className="p-8 flex flex-col justify-between h-[700px]">
+        <div className="flex-grow bg-[#fff] rounded-xl text-[#000] h-[500px] ">
+          <div className="p-8 flex flex-col justify-between h-[100%]">
             <div className="space-y-4 overflow-y-auto ">
               {pesans.map((bubble) => (
                 <BubbleChat bubble={bubble} />
@@ -142,13 +148,13 @@ const Room = ({ user }) => {
         </div>
 
         {/* Participants */}
-        <div className="divide-y-2 h-3/5">
+        <div className="flex-1 order-first md:order-2 divide-y-2 h-3/5">
           <div className="bg-[#FFCC85] px-4 py-2 text-[#000] rounded-t-md">
             <div className="flex">
-              <h1>PARTICIPANTS</h1>
+              <h1 className="text-white md:text-black md:mx-left mx-auto md:cursor-default cursor-pointer" onClick={() => toggleClass()}>PARTICIPANTS</h1>
             </div>
           </div>
-          <div className="bg-[#fff] p-2 rounded-b-md space-y-2">
+          <div className="bg-[#fff] participant h-0 md:h-max md:p-2 overflow-hidden rounded-b-md space-y-2">
             {room.users &&
               room.users.map((username) => (
                 // <Link to={"/profile/" + username} className="text-[#5E39C4] ">

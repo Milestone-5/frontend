@@ -27,7 +27,7 @@ const EditProfile = ({ user }) => {
             </h1>
 
             <div className="p-10">
-              <div className="flex justify-center mb-10 items-center">
+              <div className="flex md:flex-row flex-col justify-center mb-10 items-center">
                 {/* Anggep ini profile picturenya */}
                 <img src={profpic} className="h-40 bg-[#FFFFFF]" />
 

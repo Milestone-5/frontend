@@ -5,7 +5,7 @@ import RoomsCard from "./RoomsCard";
 const StudyRooms = ({ onClick, rooms }) => {
   return (
     <>
-      <div className="divide-y-2">
+      <div className="flex-grow divide-y-2 order-3 md:order-2 m-2">
         <div className="flex items-center justify-between mb-2">
           <div className="">
             <h1 className="font-bold">STUDY ROOMS</h1>

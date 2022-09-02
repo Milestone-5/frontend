@@ -5,11 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import io from "socket.io-client";
 
-<<<<<<< HEAD
-const socket = io.connect("https://studymate-chat.herokuapp.com/");
-=======
 const socket = io.connect("https://studymate-pesan.herokuapp.com/");
->>>>>>> e9add2c7e4fe84a83dd24480edeff3ca7b71bd1b
 
 const Room = ({ user }) => {
   const navigate = useNavigate();
@@ -36,11 +32,7 @@ const Room = ({ user }) => {
       socket.emit("join-room", room._id);
       axios
         .get(
-<<<<<<< HEAD
-          `https://api-studymate.herokuapp.com/api/get-pesan/?room=${room._id}`
-=======
           `https://studymate-data.herokuapp.com/api/get-pesan/?room=${room._id}`
->>>>>>> e9add2c7e4fe84a83dd24480edeff3ca7b71bd1b
         )
         .then((res) => setPesans(res.data))
         .catch((err) => console.log(err));

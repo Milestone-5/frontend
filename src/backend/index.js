@@ -33,7 +33,7 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://studymate.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
   socket.on("send-message", (message, room, sender) => {
     const time = new Date().toString();
     axios
-      .post("http://localhost:4000/api/create-pesan", {
+      .post("https://api-studymate.herokuapp.com/api/create-pesan", {
         pesan: message,
         sender: sender,
         roomId: room,

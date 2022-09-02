@@ -1,11 +1,7 @@
 // Express
 const express = require("express");
 const app = express();
-<<<<<<< HEAD
-const port = process.env.PORT;
-=======
 const port = process.env.PORT || 4000;
->>>>>>> e9add2c7e4fe84a83dd24480edeff3ca7b71bd1b
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");

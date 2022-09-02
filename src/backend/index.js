@@ -69,7 +69,7 @@ const routes = require("./src/Routes");
 const { default: axios } = require("axios");
 app.use("/api", routes);
 
-server.listen(port, () => {
+server.listen("https://studymate-chat.herokuapp.com/", () => {
   console.log("server is running");
 });
 

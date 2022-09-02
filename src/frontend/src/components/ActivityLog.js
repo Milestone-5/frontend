@@ -7,17 +7,19 @@ const ActivityLog = ({ username }) => {
 
   useEffect(() => {
     if (username) {
-      axios.get("http://localhost:4000/api/get-last-pesan").then((res) =>
-        setMessages(
-          res.data
-            .filter((e) => e.sender === username)
-            .slice(-3)
-            .reverse()
-        )
-      );
+      axios
+        .get("https://api-studymate.herokuapp.com/api/get-last-pesan")
+        .then((res) =>
+          setMessages(
+            res.data
+              .filter((e) => e.sender === username)
+              .slice(-3)
+              .reverse()
+          )
+        );
     } else {
       axios
-        .get("http://localhost:4000/api/get-last-pesan")
+        .get("https://api-studymate.herokuapp.com/api/get-last-pesan")
         .then((res) => setMessages(res.data.slice(-3).reverse()));
     }
   }, [username]);

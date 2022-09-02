@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import RoomsCard from "./RoomsCard";
+import Pagination from "./Pagination";
 
-const StudyRooms = ({ onClick, rooms }) => {
+const StudyRooms = ({ onClick, rooms, increment, setIncrement }) => {
+  const nextPage = () => {
+    if (increment < Math.ceil(rooms.length / 5)) {
+      setIncrement(increment + 1);
+    }
+  };
+  const previousPage = () => {
+    if (increment > 1) {
+      setIncrement(increment - 1);
+    }
+  };
   return (
     <>
       <div className="flex-grow divide-y-2 order-3 md:order-2 m-2">
@@ -23,12 +34,19 @@ const StudyRooms = ({ onClick, rooms }) => {
           </div>
         </div>
         <div className="">
-          {rooms.map((room, id) => (
+          {rooms.slice((increment - 1) * 5, increment * 5).map((room, id) => (
             <RoomsCard room={room} key={id} />
           ))}
         </div>
       </div>
-    </>
+      <div className="mt-4">
+        <Pagination
+          increment={increment}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        />
+      </div>
+    </div>
   );
 };
 

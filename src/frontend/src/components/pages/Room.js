@@ -31,7 +31,9 @@ const Room = ({ user }) => {
     if (room.users) {
       socket.emit("join-room", room._id);
       axios
-        .get(`http://localhost:4000/api/get-pesan/?room=${room._id}`)
+        .get(
+          `https://api-studymate.herokuapp.com/api/get-pesan/?room=${room._id}`
+        )
         .then((res) => setPesans(res.data))
         .catch((err) => console.log(err));
     }
@@ -60,7 +62,7 @@ const Room = ({ user }) => {
 
     if (user) {
       axios
-        .post("http://localhost:4000/api/update-room", {
+        .post("https://api-studymate.herokuapp.com/api/update-room", {
           _id: room._id,
           users: [...room.users, user.username],
         })
@@ -79,9 +81,9 @@ const Room = ({ user }) => {
   return (
     <div className="bg-[#F58F00] min-h-screen py-4 px-12">
       {/* Room Header */}
-      <div className="flex items-center justify-between mb-5 text-[#fff] ">
-        <div className="">
-          <h1 className="text-xl font-bold">{room.name && room.name}</h1>
+      <div className="flex items-center justify-between my-5 text-[#fff] ">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-bold">{room.name && room.name}</h1>
           <h1 className="text-xl">{room.description && room.description}</h1>
         </div>
 

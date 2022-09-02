@@ -8,7 +8,7 @@ const ActivityLog = ({ username }) => {
   useEffect(() => {
     if (username) {
       axios
-        .get("https://api-studymate.herokuapp.com/api/get-last-pesan")
+        .get("https://studymate-data.herokuapp.com/api/get-last-pesan")
         .then((res) =>
           setMessages(
             res.data
@@ -19,15 +19,15 @@ const ActivityLog = ({ username }) => {
         );
     } else {
       axios
-        .get("https://api-studymate.herokuapp.com/api/get-last-pesan")
+        .get("https://studymate-data.herokuapp.com/api/get-last-pesan")
         .then((res) => setMessages(res.data.slice(-3).reverse()));
     }
   }, [username]);
 
   const toggleClass = () => {
-    document.querySelector('.activityLog').classList.toggle('h-0')
-    document.querySelector('.activityLog').classList.toggle('p-2')
-  }
+    document.querySelector(".activityLog").classList.toggle("h-0");
+    document.querySelector(".activityLog").classList.toggle("p-2");
+  };
 
   return (
     <div className="flex-1 divide-y-2 order-2 md:order-3 m-2 min-w-[200px]">
@@ -35,9 +35,19 @@ const ActivityLog = ({ username }) => {
         <div className="md:bg-[#FFCC85] px-4 py-2 text-white md:text-[#000] rounded-t-md">
           <div className="flex font-bold">
             {username ? (
-              <h1 className="mx-auto md:mx-0 hover:cursor-pointer md:hover:cursor-default" onClick={() => toggleClass()}>USER RECENT ACTIVITIES</h1>
+              <h1
+                className="mx-auto md:mx-0 hover:cursor-pointer md:hover:cursor-default"
+                onClick={() => toggleClass()}
+              >
+                USER RECENT ACTIVITIES
+              </h1>
             ) : (
-              <h1 className="mx-auto md:mx-0 hover:cursor-pointer md:hover:cursor-default" onClick={() => toggleClass()}>RECENT ACTIVITIES</h1>
+              <h1
+                className="mx-auto md:mx-0 hover:cursor-pointer md:hover:cursor-default"
+                onClick={() => toggleClass()}
+              >
+                RECENT ACTIVITIES
+              </h1>
             )}
           </div>
         </div>

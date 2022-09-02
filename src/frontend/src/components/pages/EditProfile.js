@@ -14,7 +14,7 @@ const EditProfile = ({ user }) => {
     e.preventDefault();
 
     axios
-      .post("https://api-studymate.herokuapp.com/api/edit-profile", {
+      .post("https://studymate-data.herokuapp.com/api/edit-profile", {
         _id: user._id,
         name,
         old_username: user.username,

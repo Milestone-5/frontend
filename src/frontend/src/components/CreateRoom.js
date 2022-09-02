@@ -12,7 +12,7 @@ function CreateRoom() {
   const handleSubmit = () => {
     if (topic.toLowerCase() !== "all") {
       axios
-        .post("https://api-studymate.herokuapp.com/api/create-room", {
+        .post("https://studymate-data.herokuapp.com/api/create-room", {
           topic: topic,
           name: name,
           description: description,

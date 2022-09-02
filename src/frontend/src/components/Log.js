@@ -9,7 +9,7 @@ const Log = ({ log }) => {
   useEffect(() => {
     axios
       .get(
-        `https://api-studymate.herokuapp.com/api/get-room/?_id=${log.roomId}`
+        `https://studymate-data.herokuapp.com/api/get-room/?_id=${log.roomId}`
       )
       .then((res) => setRoom(res.data))
       .catch((err) => console.log(err));

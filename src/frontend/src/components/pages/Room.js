@@ -8,7 +8,7 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
 const Room = ({ user }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const [isJoined, setIsJoined] = useState(false);
   const [room, setRoom] = useState({});
@@ -67,16 +67,16 @@ const Room = ({ user }) => {
           users: [...room.users, user.username],
         })
         .then((res) => {
-          setRoom(res.data)
+          setRoom(res.data);
         })
         .catch((err) => console.log(err));
     }
   };
 
   const toggleClass = () => {
-    document.querySelector('.participant').classList.toggle('h-0')
-    document.querySelector('.participant').classList.toggle('p-2')
-  }
+    document.querySelector(".participant").classList.toggle("h-0");
+    document.querySelector(".participant").classList.toggle("p-2");
+  };
 
   return (
     <div className="bg-[#F58F00] min-h-screen py-4 px-12">
@@ -121,7 +121,7 @@ const Room = ({ user }) => {
 
       <div className="flex flex-col order-2 md:order-first md:flex-row gap-8 text-[#fff]">
         {/* Chat */}
-        <div className="flex-grow bg-[#fff] rounded-xl text-[#000] h-[500px] ">
+        <div className="flex-grow bg-[#fff] rounded-xl text-[#000] h-[500px] md:w-1/2">
           <div className="p-8 flex flex-col justify-between h-[100%]">
             <div className="space-y-4 overflow-y-auto ">
               {pesans.map((bubble) => (
@@ -151,7 +151,12 @@ const Room = ({ user }) => {
         <div className="flex-1 order-first md:order-2 divide-y-2 h-3/5">
           <div className="bg-[#FFCC85] px-4 py-2 text-[#000] rounded-t-md">
             <div className="flex">
-              <h1 className="text-white md:text-black md:mx-left mx-auto md:cursor-default cursor-pointer" onClick={() => toggleClass()}>PARTICIPANTS</h1>
+              <h1
+                className="text-white md:text-black md:mx-left mx-auto md:cursor-default cursor-pointer"
+                onClick={() => toggleClass()}
+              >
+                PARTICIPANTS
+              </h1>
             </div>
           </div>
           <div className="bg-[#fff] participant h-0 md:h-max md:p-2 overflow-hidden rounded-b-md space-y-2">

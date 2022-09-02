@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import BubbleChat from "../BubbleChat";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import io from "socket.io-client";
@@ -8,6 +8,7 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
 const Room = ({ user }) => {
+  const navigate = useNavigate()
   const location = useLocation();
   const [isJoined, setIsJoined] = useState(false);
   const [room, setRoom] = useState({});
@@ -21,12 +22,12 @@ const Room = ({ user }) => {
 
   useEffect(() => {
     setRoom(location.state);
-    if (user) {
-      setIsJoined(location.state.users.includes(user.username));
-    }
   }, []);
 
   useEffect(() => {
+    if (room.users) {
+      setIsJoined(room.users.includes(user.username));
+    }
     if (room.users) {
       socket.emit("join-room", room._id);
       axios
@@ -64,7 +65,7 @@ const Room = ({ user }) => {
           users: [...room.users, user.username],
         })
         .then((res) => {
-          console.log(res.data);
+          setRoom(res.data)
         })
         .catch((err) => console.log(err));
     }

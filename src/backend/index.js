@@ -69,7 +69,7 @@ const routes = require("./src/Routes");
 const { default: axios } = require("axios");
 app.use("/api", routes);
 
-server.listen(3001, () => {
+server.listen(port, () => {
   console.log("server is running");
 });
 

@@ -46,7 +46,7 @@ const StudyRooms = ({ onClick, rooms, increment, setIncrement }) => {
           previousPage={previousPage}
         />
       </div>
-    </div>
+    </>
   );
 };
 

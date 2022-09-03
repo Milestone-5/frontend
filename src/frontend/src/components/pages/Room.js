@@ -129,7 +129,11 @@ const Room = ({ user }) => {
               ))}
               <div ref={messagesEndRef} />
             </div>
-            <form action="" onSubmit={handleSubmit}>
+            <form
+              action=""
+              onSubmit={handleSubmit}
+              className="flex items-center gap-2"
+            >
               <input
                 className={
                   "bg-[#FFCC85] w-full px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed"
@@ -141,7 +145,15 @@ const Room = ({ user }) => {
                     ? "Write your message here"
                     : "You must join the room first"
                 }
+                value={pesan}
                 onChange={(e) => setPesan(e.target.value)}
+              />
+              <input
+                type="submit"
+                className={
+                  "bg-[#44288F] text-[#fff] px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed cursor-pointer disabled:bg-[#9881DA]"
+                }
+                disabled={!isJoined}
               />
             </form>
           </div>

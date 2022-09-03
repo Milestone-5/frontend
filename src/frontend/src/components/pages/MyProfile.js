@@ -15,13 +15,13 @@ const MyProfile = () => {
 
   useEffect(() => {
     if (location.state) {
-      console.log(location.state);
+      // console.log(location.state);
       axios
         .get(
           `https://studymate-data.herokuapp.com/api/get-user/?username=${location.state.username}`
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setUser(res.data);
         })
         .catch((err) => console.log(err));
@@ -60,7 +60,7 @@ const MyProfile = () => {
         <div className="grid grid-row justify-center gap-1">
           {/*Pura-pura aja dulu ini dpnya*/}
           <div className="flex justify-center">
-            <CgProfile size={200} color={"#000"} />
+            <CgProfile size={150} color={"#000"} />
           </div>
           <p className="text-center text-3xl font-bold">{user && user.name}</p>
           <p className="text-center text-xl">@{user && user.username}</p>
@@ -79,7 +79,7 @@ const MyProfile = () => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col text-left w-1/2">
+        <div className="flex flex-col text-left w-full xl:w-1/2 md:w-2/3">
           <p className="text-[#ffffff] text-xl font-bold mt-5"> ABOUT </p>
           {/* <div className="rounded-xl mb-5 bg-white px-4 py-2 flex items-center"> */}
           {user &&
@@ -90,7 +90,7 @@ const MyProfile = () => {
             ))}
           {/* </div> */}
         </div>
-        <div className="grid grid-cols-[4fr_1fr] gap-8 text-[#fff] w-1/2">
+        <div className="flex flex-col-reverse md:flex-row gap-8 text-[#fff] w-full xl:w-1/2 md:w-2/3">
           <div>
             <div className="flex items-center justify-between mb-2">
               <h1 className="font-bold">

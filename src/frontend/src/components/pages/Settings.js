@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import profpic from "../../assets/Logo.png"; /*ini nanti diganti */
+import { CgProfile } from "react-icons/cg";
 import { flexbox } from "@mui/system";
 
 const EditProfile = ({ user }) => {
@@ -20,19 +20,21 @@ const EditProfile = ({ user }) => {
   return (
     <div className="flex justify-center bg-[#F58F00] h-screen">
       {user && (
-        <div className="mt-10 w-2/3 lg:w-1/2">
+        <div className="mt-10 w-3/4 lg:w-1/2">
           <div className="bg-[#FFFFFF] rounded-xl">
             <h1 className="mb-7 p-3 text-center font-bold rounded-t-xl text-3xl bg-[#FFCC85]">
               Settings
             </h1>
 
-            <div className="p-10">
+            <div className="p-5 md:p-10">
               <div className="flex md:flex-row flex-col justify-center mb-10 items-center">
                 {/* Anggep ini profile picturenya */}
-                <img src={profpic} className="h-40 bg-[#FFFFFF]" />
+                <div className="flex justify-center">
+                  <CgProfile size={150} color={"#000"} />
+                </div>
 
-                <div className="flex-col ml-8">
-                  <p className="text-3xl font-bold"> {user.name} </p>
+                <div className="flex-col md:ml-8">
+                  <p className="text-xl md:text-3xl font-bold"> {user.name} </p>
                   <p className="text-xl"> @{user.username} </p>
                 </div>
               </div>

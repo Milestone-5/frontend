@@ -32,7 +32,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className="w-1/2 mt-10 bg-[#F58F00] rounded-xl">
+      <div className="w-full mx-8 max-w-[500px] mt-10 bg-[#F58F00] rounded-xl">
         <h1 className="p-5 text-center font-bold rounded-t-xl text-3xl bg-[#FFCC85]">
           Register
         </h1>
@@ -66,7 +66,7 @@ const Register = () => {
         <div className="flex flex-col items-center px-5 pb-5">
           <h1>Already have an account?</h1>
           <Link className="underline text-[#5E39C4] font-bold" to="/register">
-            Register
+            Login
           </Link>
         </div>
       </div>

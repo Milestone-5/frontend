@@ -122,8 +122,8 @@ const Room = ({ user }) => {
       <div className="flex flex-col order-2 md:order-first md:flex-row gap-8 text-[#fff]">
         {/* Chat */}
         <div className="flex-grow bg-[#fff] rounded-xl text-[#000] h-[500px] md:w-1/2">
-          <div className="p-8 flex flex-col justify-between h-[100%]">
-            <div className="space-y-4 overflow-y-auto ">
+          <div className="p-4 md:p-8 flex flex-col justify-between h-[100%]">
+            <div className="space-y-1 md:space-y-2 overflow-y-auto ">
               {pesans.map((bubble) => (
                 <BubbleChat bubble={bubble} />
               ))}
@@ -136,7 +136,7 @@ const Room = ({ user }) => {
             >
               <input
                 className={
-                  "bg-[#FFCC85] w-full px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed"
+                  "bg-[#FFCC85] w-full px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed text-xs md:text-base"
                 }
                 type="text"
                 disabled={!isJoined}
@@ -151,9 +151,10 @@ const Room = ({ user }) => {
               <input
                 type="submit"
                 className={
-                  "bg-[#44288F] text-[#fff] px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed cursor-pointer disabled:bg-[#9881DA]"
+                  "bg-[#44288F] text-[#fff] px-4 py-2 mt-5 rounded-md placeholder-[#000] disabled:cursor-not-allowed cursor-pointer disabled:bg-[#9881DA] text-xs md:text-base"
                 }
                 disabled={!isJoined}
+                value={"Send"}
               />
             </form>
           </div>

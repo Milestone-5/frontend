@@ -13,14 +13,15 @@ const Login = () => {
 
     axios
       .get(
-        `https://studymate-data.herokuapp.com/api/login/?username=${username}&password=${password}`
+        process.env.REACT_APP_API_URL +
+          `/login/?username=${username}&password=${password}`
       )
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/");
         window.location.reload();
       })
-      .catch((err) => alert(err.response.data.msg));
+      .catch((err) => console.log(err));
   };
 
   return (

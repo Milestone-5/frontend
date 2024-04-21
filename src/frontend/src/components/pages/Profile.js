@@ -17,9 +17,7 @@ const Profile = () => {
     if (username) {
       // console.log(username);
       axios
-        .get(
-          `https://studymate-data.herokuapp.com/api/get-user/?username=${username}`
-        )
+        .get(process.env.REACT_APP_API_URL + `/get-user/?username=${username}`)
         .then((res) => {
           // console.log(res);
           setUser(res.data);
@@ -31,7 +29,8 @@ const Profile = () => {
   useEffect(() => {
     axios
       .get(
-        `https://studymate-data.herokuapp.com/api/get-rooms-by-host/?hostname=${username}`
+        process.env.REACT_APP_API_URL +
+          `/get-rooms-by-host/?hostname=${username}`
       )
       .then((res) => {
         setRooms(res.data.reverse());

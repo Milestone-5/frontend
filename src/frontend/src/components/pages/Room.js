@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import io from "socket.io-client";
 
-const socket = io.connect("https://studymate-pesan.herokuapp.com/");
+const socket = io.connect("https://studymate-chat.vercel.app");
 
 const Room = ({ user }) => {
   const navigate = useNavigate();
@@ -31,9 +31,7 @@ const Room = ({ user }) => {
     if (room.users) {
       socket.emit("join-room", room._id);
       axios
-        .get(
-          `https://studymate-data.herokuapp.com/api/get-pesan/?room=${room._id}`
-        )
+        .get(process.env.VUE_APP_API_URL + `/get-pesan/?room=${room._id}`)
         .then((res) => setPesans(res.data))
         .catch((err) => console.log(err));
     }
@@ -62,7 +60,7 @@ const Room = ({ user }) => {
 
     if (user) {
       axios
-        .post("https://studymate-data.herokuapp.com/api/update-room", {
+        .post(process.env.VUE_APP_API_URL + "/update-room", {
           _id: room._id,
           users: [...room.users, user.username],
         })

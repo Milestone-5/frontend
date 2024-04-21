@@ -28,7 +28,7 @@ const Discussion = () => {
 
   useEffect(() => {
     axios
-      .get("https://studymate-data.herokuapp.com/api/get-rooms")
+      .get(process.env.REACT_APP_API_URL + "/get-rooms")
       .then((res) => {
         // Nanti mau dibikin pagination gitu buat roomnya
         setRooms(res.data.reverse());

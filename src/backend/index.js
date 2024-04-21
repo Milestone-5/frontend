@@ -22,9 +22,7 @@ app.use(bodyParser.json());
 const mongoose = require("mongoose");
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://sparta:hmB2Z8oFEDJWcaqa@cluster0.pajthdd.mongodb.net/?retryWrites=true&w=majority"
-  );
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 // public file
@@ -33,7 +31,7 @@ async function main() {
 
 // start
 const routes = require("./src/Routes");
-app.use("/api", routes);
+app.use("/", routes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

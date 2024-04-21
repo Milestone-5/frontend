@@ -9,7 +9,7 @@ const BrowseTopics = ({ changeRoom, rooms }) => {
 
   useEffect(() => {
     axios
-      .get("https://studymate-data.herokuapp.com/api/get-topics")
+      .get(process.env.REACT_APP_API_URL + "/get-topics")
       .then((res) => setTopics(res.data))
       .catch((err) => console.log(err));
   }, []);

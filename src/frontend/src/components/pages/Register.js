@@ -14,7 +14,7 @@ const Register = () => {
 
     if (password.length >= 8) {
       axios
-        .post("https://studymate-data.herokuapp.com/api/register", {
+        .post(`${process.env.REACT_APP_API_URL}/register`, {
           name,
           username,
           password,

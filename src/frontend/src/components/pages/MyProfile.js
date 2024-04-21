@@ -18,7 +18,8 @@ const MyProfile = () => {
       // console.log(location.state);
       axios
         .get(
-          `https://studymate-data.herokuapp.com/api/get-user/?username=${location.state.username}`
+          process.env.REACT_APP_API_URL +
+            `/get-user/?username=${location.state.username}`
         )
         .then((res) => {
           // console.log(res);
@@ -31,7 +32,8 @@ const MyProfile = () => {
   useEffect(() => {
     axios
       .get(
-        `https://studymate-data.herokuapp.com/api/get-rooms-by-host/?hostname=${location.state.username}`
+        process.env.REACT_APP_API_URL +
+          `/get-rooms-by-host/?hostname=${location.state.username}`
       )
       .then((res) => {
         setRooms(res.data.reverse());
